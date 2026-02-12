@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Joshita 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+padding:0;
+background:linear-gradient(to bottom,#ffd6ec,#ffc0e6);
+font-family:'Poppins',sans-serif;
+text-align:center;
+overflow:hidden;
+}
+
+.screen{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100vh;
+padding:20px;
+}
+
+h1{
+font-family:'Pacifico',cursive;
+color:#ff3c9e;
+font-size:28px;
+}
+
+.message{
+color:#ff1493;
+font-size:18px;
+margin-top:20px;
+}
+
+.button{
+background:#ff69b4;
+color:white;
+padding:12px 25px;
+border-radius:30px;
+margin-top:20px;
+font-size:16px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.balloon{
+width:60px;
+height:80px;
+background:#ff69b4;
+border-radius:50%;
+position:absolute;
+bottom:-100px;
+animation:float 25s linear infinite;
+}
+
+.balloon::after{
+content:"";
+position:absolute;
+width:2px;
+height:45px;
+left:50%;
+top:80px;
+background:#aaa;
+border-radius:50%;
+transform:translateX(-50%);
+clip-path:path("M1 0 C 6 10, -4 20, 2 30 C 8 40, -6 50, 2 60");
+}
+
+@keyframes float{
+from{ transform:translateY(0); }
+to{ transform:translateY(-140vh); }
+}
+
+.gift{
+font-size:80px;
+cursor:pointer;
+margin-top:20px;
+}
+
+.counter{
+margin-top:15px;
+color:#ff1493;
+font-size:18px;
+}
+
+.final-message{
+white-space:pre-line;
+font-size:16px;
+color:#d1007a;
+margin-top:20px;
+padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="screen" id="start">
+<h1>Ready for a surprise? 💕</h1>
+<div class="button" onclick="startSurprise()">Tap the screen</div>
+</div>
+
+<div class="screen" id="balloonScreen" style="display:none;">
+<h1>Pop the balloons first 🎈</h1>
+</div>
+
+<div class="screen" id="giftScreen" style="display:none;">
+<h1>Verryyyyy gooodddddd 💗</h1>
+<div class="gift" onclick="tapGift()">🎁</div>
+<div class="counter" id="tapCounter">Tap the gift 16 times 💕</div>
+<div class="final-message" id="finalMessage"></div>
+</div>
+
+<script>
+
+let taps=0;
+
+function startSurprise(){
+document.getElementById("start").style.display="none";
+document.getElementById("balloonScreen").style.display="flex";
+
+for(let i=0;i<5;i++){
+createBalloon();
+}
+}
+
+function createBalloon(){
+let balloon=document.createElement("div");
+balloon.className="balloon";
+balloon.style.left=Math.random()*80+"%";
+balloon.style.background=["#ff69b4","#ff85c1","#ff1493","#ffb6d9"][Math.floor(Math.random()*4)];
+
+balloon.onclick=function(){
+balloon.remove();
+checkBalloons();
+}
+
+document.body.appendChild(balloon);
+}
+
+function checkBalloons(){
+if(document.getElementsByClassName("balloon").length==0){
+document.getElementById("balloonScreen").style.display="none";
+document.getElementById("giftScreen").style.display="flex";
+}
+}
+
+function tapGift(){
+taps++;
+document.getElementById("tapCounter").innerHTML="You tapped "+taps+" / 16 times 💖";
+
+if(taps==16){
+document.getElementById("finalMessage").innerHTML=
+"Dear Joshita 💕\n\n"+
+"First of all thanks to everything u did for me & everything u r doing for me till now.....\n"+
+"Thanks for taking care of me like none other 💗\n"+
+"Thanks for showing all those love nd care to me that I had never seen before...\n\n"+
+"Taking care of u is my passion nd I love it 💞\n"+
+"This is ur day ✨\n"+
+"Glad u turned 16 this day 🎉\n"+
+"Happieeeeee Birthdayyyyyy 💖💖💖\n\n"+
+"Hope u nd ur world be peaceful nd happie everyday nd every moment 🌸✨\n\n"+
+"Yours....\nFictional Man 💌💫";
+}
+}
+
+</script>
+
+</body>
+</html>
